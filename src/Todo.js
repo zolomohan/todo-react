@@ -19,6 +19,10 @@ export default class Todo extends Component {
         this.setState({editMode: !this.state.editMode})
     }
 
+    toggleCompletion = () => {
+        this.setState({completed: !this.state.completed})
+    }
+
     render() {
         return (
             <div>
@@ -28,7 +32,7 @@ export default class Todo extends Component {
                         <button onClick={this.toggleEdit}>Cancel</button> 
                       </div>
                     : <div>
-                        <span>{this.props.desc}</span>
+                        <span onClick={this.toggleCompletion}>{this.props.desc}</span>
                         <button onClick={this.toggleEdit}>Edit</button>
                         <button onClick={this.handleDelete}>Delete</button>
                     </div>
