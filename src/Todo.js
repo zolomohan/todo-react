@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Form from './Form'
+import './Todo.css'
 
 export default class Todo extends Component {
 
@@ -27,14 +28,18 @@ export default class Todo extends Component {
         return (
             <div>
                 {this.state.editMode 
-                    ? <div>
+                    ? <div className='Todo'>
                         <Form value={this.props.desc} onSubmit = {this.props.edit} id={this.props.id} toggleEdit={this.toggleEdit} editForm/>
-                        <button onClick={this.toggleEdit}>Cancel</button> 
+                        <span className='Todo-buttons'><button onClick={this.toggleEdit}><i className='fas fa-times'/></button></span>
                       </div>
-                    : <div>
-                        <span onClick={this.toggleCompletion}>{this.props.desc}</span>
-                        <button onClick={this.toggleEdit}>Edit</button>
-                        <button onClick={this.handleDelete}>Delete</button>
+                    : <div className='Todo'>
+                        <li  onClick={this.toggleCompletion} className={this.state.completed ? 'Todo-task completed' : 'Todo-task'}>
+                            {this.props.desc}
+                        </li>
+                        <div className='Todo-buttons'>
+                            <button onClick={this.toggleEdit}><i className='fas fa-pen' /></button>
+                            <button onClick={this.handleDelete}><i className='fas fa-trash' /></button>
+                        </div>
                     </div>
                 }
             </div>

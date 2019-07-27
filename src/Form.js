@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Form.css'
 
 export default class Form extends Component {
 
@@ -29,7 +30,7 @@ export default class Form extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className ={this.props.editForm ? 'Todo-edit-form' : 'NewTodoForm'}>
                 <div>
                     <input
                         value = {this.state.desc}
@@ -37,6 +38,7 @@ export default class Form extends Component {
                         name='desc'
                         placeholder={this.props.placeholder}
                         onChange = {this.handleChange}
+                        maxLength = {30}
                     />
                 </div>
                 <button>{this.props.buttonText}</button>

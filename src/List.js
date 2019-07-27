@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import uuid from 'uuid'
 import Todo from './Todo'
 import Form from './Form';
+import './List.css'
 
 export default class List extends Component {
 
@@ -35,19 +36,21 @@ export default class List extends Component {
 
     render() {
         return (
-            <div>
+            <div className="List">
+                <h1>Todo List</h1>
+                <ul>
+                {this.state.todos.map(todo => 
+                    <Todo 
+                    key = {todo.id}
+                    id = {todo.id}
+                    desc={todo.desc}
+                    delete = {this.deleteTodo}
+                    edit = {this.editTodo}
+                    />
+                    )
+                }
                 <Form onSubmit={this.addTodo} buttonText='Submit'/>
-                <div className="List">
-                    {this.state.todos.map(todo => 
-                        <Todo 
-                            key = {todo.id}
-                            id = {todo.id}
-                            desc={todo.desc}
-                            delete = {this.deleteTodo}
-                            edit = {this.editTodo}
-                        />)
-                    }
-                </div>
+                </ul>
             </div>
         )
     }
