@@ -10,18 +10,17 @@ export default class Form extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            [this.props.purpose]: ''
-        }
+        this.state = { desc: ''}
     }
 
     handleChange = evt => {
-        this.setState({[this.props.purpose]: evt.target.value})
+        this.setState({desc: evt.target.value})
     }
 
     handleSubmit = evt => {
         evt.preventDefault();
-        this.props.onSubmit();
+        this.props.onSubmit(this.state);
+        this.setState({ desc: "" });
     }
 
     render() {
@@ -29,8 +28,9 @@ export default class Form extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input
+                        value = {this.state.desc}
                         type="text"
-                        name={this.props.purpose}
+                        name='desc'
                         placeholder={this.props.placeholder}
                         onChange = {this.handleChange}
                     />
