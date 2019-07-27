@@ -5,12 +5,15 @@ export default class Form extends Component {
     static defaultProps = {
         placeholder: 'New Task',
         purpose: 'newTask',
-        buttonText: 'Submit'
+        buttonText: 'Submit',
+        value: '',
+        id:'',
+        editMode: false
     }
 
     constructor(props){
         super(props);
-        this.state = { desc: ''}
+        this.state = { desc: this.props.value}
     }
 
     handleChange = evt => {
@@ -19,8 +22,9 @@ export default class Form extends Component {
 
     handleSubmit = evt => {
         evt.preventDefault();
-        this.props.onSubmit(this.state);
+        this.props.onSubmit(this.state, this.props.id);
         this.setState({ desc: "" });
+        if(this.props.editForm) this.props.toggleEdit();
     }
 
     render() {

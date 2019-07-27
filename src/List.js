@@ -22,6 +22,17 @@ export default class List extends Component {
         this.setState({todos: this.state.todos.filter(todo => todo.id !== id)});
     }
 
+    editTodo = (todo, id) => {
+        let listCopy = [...this.state.todos];
+        listCopy.forEach( object => {
+            console.log(object)
+            if(id === object.id){
+                object.desc = todo.desc;
+            }
+        })
+        this.setState({todos: listCopy});
+    }
+
     render() {
         return (
             <div>
@@ -33,6 +44,7 @@ export default class List extends Component {
                             id = {todo.id}
                             desc={todo.desc}
                             delete = {this.deleteTodo}
+                            edit = {this.editTodo}
                         />)
                     }
                 </div>
